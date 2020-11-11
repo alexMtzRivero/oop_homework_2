@@ -1,5 +1,5 @@
 # HW-02
 
-Author: Student Name
+Author:Alejandro Martinez
 
-![HW-02](https://github.com/vasart/potential-happiness/workflows/HW-02/badge.svg)
+![Java CI with Gradle](https://github.com/alexMtzRivero/oop_homework_2/workflows/Java%20CI%20with%20Gradle/badge.svg)
