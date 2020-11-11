@@ -9,8 +9,8 @@ public class EstimateSize {
         long freeMemory = Runtime.getRuntime().freeMemory();
 
         long used = totalMemory - freeMemory;
-        System.out.println("Used before GC :"+used);
-        System.out.println("memory of int :"+(used/10_000_000));
+        System.out.println("Used before GC :" + used);
+        System.out.println("memory of int :" + (used / 10_000_000));
         trash = new int[1];
         System.gc();
         try {
@@ -23,7 +23,7 @@ public class EstimateSize {
         used = totalMemory - freeMemory;
 
 
-        System.out.println("Used after GC :"+used);
+        System.out.println("Used after GC :" + used);
 
     }
 }
