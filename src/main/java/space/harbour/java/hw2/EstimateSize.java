@@ -5,6 +5,9 @@ public class EstimateSize {
     // gradle check to check , build
     public static void main(String[] args) {
         int[] trash = new int [10_000_000];
+        for (int i = 0; i < 10_000_000; i++)  {
+            trash[i] = 1;
+            }
         long totalMemory = Runtime.getRuntime().totalMemory();
         long freeMemory = Runtime.getRuntime().freeMemory();
 
@@ -15,9 +18,9 @@ public class EstimateSize {
         System.gc();
         try {
             Thread.sleep(10);
-        } catch (Exception e) {
+            } catch (Exception e) {
             // handle exception
-        }
+            }
 
         freeMemory = Runtime.getRuntime().freeMemory();
         used = totalMemory - freeMemory;
@@ -25,5 +28,5 @@ public class EstimateSize {
 
         System.out.println("Used after GC :" + used);
 
+        }
     }
-}
