@@ -11,7 +11,7 @@ public class Slang {
 
         testText = fixSmiles(fixAbbreviations(testText));
         System.out.println(testText);
-        }
+    }
 
     public static String fixAbbreviations(String text) {
         HashMap<String, String> replaces = new HashMap<String, String>();
@@ -24,10 +24,10 @@ public class Slang {
             String key = entry.getKey();
             String value = entry.getValue();
             text = text.replaceAll(key, value);
-            }
+        }
         return text;
 
-        }
+    }
 
     public static String fixSmiles(String text) {
         HashMap<String, String> replaces = new HashMap<String, String>();
@@ -40,8 +40,8 @@ public class Slang {
             String key = entry.getKey();
             String value = entry.getValue();
             text = text.replaceAll(key, value);
-            }
+        }
         return text;
 
-        }
     }
+}
