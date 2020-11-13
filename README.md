@@ -2,4 +2,4 @@
 
 Author:Alejandro Martinez
 
-![Java CI with Gradle](https://github.com/alexMtzRivero/oop_homework_2/workflows/Java%20CI%20with%20Gradle/badge.svg)
+![hw-3](https://github.com/alexMtzRivero/oop_homework_2/workflows/hw-3/badge.svg)
