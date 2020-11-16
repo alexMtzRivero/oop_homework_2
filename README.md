@@ -7,3 +7,5 @@ Author:Alejandro Martinez
 ![hw-4](https://github.com/alexMtzRivero/oop_homework_2/workflows/hw-4/badge.svg?branch=main)
 
 ![hw-5](https://github.com/alexMtzRivero/oop_homework_2/workflows/hw-5/badge.svg)
+
+![hw-6](https://github.com/alexMtzRivero/oop_homework_2/workflows/hw-6/badge.svg)
