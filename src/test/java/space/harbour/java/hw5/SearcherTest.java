@@ -1,11 +1,9 @@
 package space.harbour.java.hw5;
 
-import junit.framework.TestCase;
-import org.junit.Assert;
-
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Queue;
+import junit.framework.TestCase;
+import org.junit.Assert;
 
 public class SearcherTest extends TestCase {
 
