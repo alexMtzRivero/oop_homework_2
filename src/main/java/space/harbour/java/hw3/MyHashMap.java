@@ -59,6 +59,9 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean containsKey(Object key) {
+        if (key == null) {
+            return false;
+        }
         int i = keyToBucketIndex(key);
         for (Pair<K, V> pair : buckets[i]) {
             if (pair.key.equals(key)) {
@@ -73,7 +76,7 @@ public class MyHashMap<K, V> implements Map<K, V> {
     public boolean containsValue(Object value) {
         for (int i = 0; i < bucketSize; i++) {
             for (Pair<K, V> pair : buckets[i]) {
-                if (pair.value.equals(value)) {
+                if (pair.value == value || pair.value.equals(value)) {
                     return true;
                 }
             }
@@ -83,6 +86,9 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(Object key) {
+        if (key == null) {
+            return null;
+        }
         int i = keyToBucketIndex(key);
         for (Pair<K, V> pair : buckets[i]) {
             if (pair.key.equals(key)) {
@@ -94,13 +100,23 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
     @Override
     public V put(K key, V value) {
+        if (key == null) {
+            return null;
+        }
+
         Pair<K, V> pair = new Pair<>(key, value);
+        boolean found = false;
+
         int i = keyToBucketIndex(key);
-        if (buckets[i].contains(pair)) {
+        if (buckets[i].size() > 0) {
             for (Pair<K, V> oldPair : buckets[i]) {
                 if (oldPair.key.equals(key)) {
                     oldPair.value = value;
+                    found = true;
                 }
+            }
+            if (!found) {
+                buckets[i].add(pair);
             }
         } else {
             buckets[i].add(pair);
@@ -111,6 +127,9 @@ public class MyHashMap<K, V> implements Map<K, V> {
 
     @Override
     public V remove(Object key) {
+        if (key == null) {
+            return null;
+        }
         int i = keyToBucketIndex(key);
         buckets[i].removeIf(pair -> pair.key.equals(key));
         return null;
@@ -130,7 +149,6 @@ public class MyHashMap<K, V> implements Map<K, V> {
         }
     }
 
-    // star task
     @Override
     public Set<K> keySet() {
         Set<K> result = new HashSet<>();
