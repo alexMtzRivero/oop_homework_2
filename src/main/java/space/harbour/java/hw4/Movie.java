@@ -42,8 +42,12 @@ public class Movie implements Jsonable<Movie> {
         }
     }
 
-    class BasePerson implements Jsonable<BasePerson> {
-        String name;
+    public static class BasePerson implements Jsonable<BasePerson> {
+        public String name;
+
+        public BasePerson(String name) {
+            this.name = name;
+        }
 
         @Override
         public String toJsonString() {
@@ -70,6 +74,10 @@ public class Movie implements Jsonable<Movie> {
     class Writer extends BasePerson {
         String type;
 
+        public Writer(String name) {
+            super(name);
+        }
+
         @Override
         public JsonObject toJsonObject() {
             return Json.createObjectBuilder()
@@ -88,8 +96,12 @@ public class Movie implements Jsonable<Movie> {
         }
     }
 
-    class Actor extends BasePerson {
-        String as;
+    public static class Actor extends BasePerson {
+        public String as;
+
+        public Actor(String name) {
+            super(name);
+        }
 
         @Override
         public JsonObject toJsonObject() {
@@ -141,22 +153,22 @@ public class Movie implements Jsonable<Movie> {
         }
     }
 
-    String title;
-    Integer year;
-    String released;
-    Integer runtime;
-    String awards;
-    String poster;
-    String plot;
+    public String title;
+    public Integer year;
+    public String released;
+    public Integer runtime;
+    public String awards;
+    public String poster;
+    public String plot;
 
-    BasePerson director;
-    ArrayList<String> genres;
-    ArrayList<String> languages;
-    ArrayList<String> countries;
+    public BasePerson director;
+    public ArrayList<String> genres;
+    public ArrayList<String> languages;
+    public ArrayList<String> countries;
 
-    ArrayList<Writer> writers;
-    ArrayList<Actor> actors;
-    ArrayList<Rating> ratings;
+    public ArrayList<Writer> writers;
+    public ArrayList<Actor> actors;
+    public ArrayList<Rating> ratings;
 
     public Movie() {
         this.genres = new ArrayList<String>();
@@ -246,7 +258,7 @@ public class Movie implements Jsonable<Movie> {
         this.poster = jobject.getString("Poster");
         this.plot = jobject.getString("Plot");
 
-        this.director  = new BasePerson().fromJson(jobject.getJsonObject("Director").toString());
+        this.director  = new BasePerson("").fromJson(jobject.getJsonObject("Director").toString());
 
         JsonArray tempGeneres = jobject.getJsonArray("Genres");
         this.genres = new ArrayList<String>();
@@ -269,12 +281,12 @@ public class Movie implements Jsonable<Movie> {
         JsonArray warray = jobject.getJsonArray("Writers");
         this.writers = new ArrayList<Writer>();
         for (JsonValue value : warray) {
-            this.writers.add(new Writer().fromJson(value.asJsonObject().toString()));
+            this.writers.add(new Writer("").fromJson(value.asJsonObject().toString()));
         }
         JsonArray aarray = jobject.getJsonArray("Actors");
         this.actors = new ArrayList<Actor>();
         for (JsonValue value : aarray) {
-            this.actors.add(new Actor().fromJson(value.asJsonObject().toString()));
+            this.actors.add(new Actor("").fromJson(value.asJsonObject().toString()));
         }
         JsonArray rarray = jobject.getJsonArray("Ratings");
         this.ratings = new ArrayList<Rating>();

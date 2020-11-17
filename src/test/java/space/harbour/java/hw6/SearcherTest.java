@@ -1,4 +1,4 @@
-package space.harbour.java.hw5;
+package space.harbour.java.hw6;
 
 import java.net.MalformedURLException;
 import java.net.URL;
