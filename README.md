@@ -17,3 +17,5 @@ Author:Alejandro Martinez
 ![hw-9](https://github.com/alexMtzRivero/oop_homework_2/workflows/hw-9/badge.svg)
 
 ![hw-10](https://github.com/alexMtzRivero/oop_homework_2/workflows/hw-10/badge.svg)
+
+![hw-11](https://github.com/alexMtzRivero/oop_homework_2/workflows/hw-11/badge.svg)
