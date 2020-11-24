@@ -6,10 +6,9 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import java.util.ArrayList;
 import org.bson.Document;
 import space.harbour.java.hw4.Movie;
-
-import java.util.ArrayList;
 
 
 public class MongoConector {
@@ -62,7 +61,8 @@ public class MongoConector {
 
     public static String getallFormated() {
         ArrayList<Message> messages = getall();
-        StringBuilder result = new StringBuilder("Hello here are the previous messages from mongo:\n");
+        StringBuilder result = new StringBuilder("Hel"
+                + "lo here are the previous messages from mongo:\n");
         for (Message message : messages) {
             result.append(message.toString()).append("\n");
         }
