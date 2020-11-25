@@ -20,7 +20,7 @@ public class MongoConectorTest extends TestCase {
         String jsonString = bladeRuner.readTextFromFile("BladeRunner.json");
         bladeRuner.fromJson(jsonString);
 
-        Assert.assertTrue(mc.addMovie(bladeRuner));
+        Assert.assertNotNull(mc.addMovie(bladeRuner));
 
         //      testGetMoviesWithName()
         ArrayList<Movie> bladeRunerFromMongo = mc.getMoviesWithName("Blade Runner");

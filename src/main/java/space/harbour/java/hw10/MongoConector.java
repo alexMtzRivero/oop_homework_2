@@ -1,5 +1,6 @@
 package space.harbour.java.hw10;
 
+import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -12,25 +13,39 @@ import space.harbour.java.hw4.Movie;
 
 public class MongoConector {
 
-    MongoClient mongoClient;
+    public static MongoClient mongoClient;
 
 
-    public Boolean addMovie(Movie movie) {
+    public static String addMovie(Movie movie) {
         Document doc = Document.parse(movie.toJsonString());
 
         MongoCollection<Document> moviesColl = getColection("movies");
-
         moviesColl.insertOne(doc);
 
-        return true;
+        return doc.toJson();
     }
 
-    public MongoCollection<Document> getColection(String colName) {
+    public static MongoCollection<Document> getColection(String colName) {
+        if (mongoClient == null) {
+            conect();
+        }
         MongoDatabase database = mongoClient.getDatabase("MoviesTest");
         return database.getCollection(colName);
     }
 
-    public ArrayList<Movie> getMoviesWithName(String name) {
+    public static Document updateMovie(String name, Movie movie) {
+        Gson gson = new Gson();
+        Document doc = Document.parse(gson.toJson(movie));
+        System.out.println(name);
+        return getColection("movies").findOneAndUpdate(Filters.eq("Title", name), doc);
+    }
+
+    public static Document updateMovie(String name, String movie) {
+        Document doc = Document.parse(movie);
+        return getColection("movies").findOneAndReplace(Filters.eq("Title", name), doc);
+    }
+
+    public static ArrayList<Movie> getMoviesWithName(String name) {
         ArrayList<Movie> movies = new ArrayList<Movie>();
         MongoCollection<Document> moviesColl = getColection("movies");
         for (Document doc : moviesColl.find(Filters.eq("Title", name))) {
@@ -41,13 +56,24 @@ public class MongoConector {
         return movies;
     }
 
-    public boolean deleteMoviesWithName(String name) {
+    public static ArrayList<Movie> getAllMovies() {
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        MongoCollection<Document> moviesColl = getColection("movies");
+        for (Document doc : moviesColl.find()) {
+            Movie movie = new Movie();
+            movie.fromJson(doc.toJson());
+            movies.add(movie);
+        }
+        return movies;
+    }
+
+    public static boolean deleteMoviesWithName(String name) {
         MongoCollection<Document> moviesColl = getColection("movies");
         moviesColl.deleteMany(Filters.eq("Title", name));
         return true;
     }
 
-    public void conect() {
+    public static void conect() {
         MongoClientURI uri = new MongoClientURI(
                 "mongodb://root:thisisarealyhardpassword@cluster0-shard-00-00.wnwbw.mongodb.net:27"
                         + "017,cluster0-shard-00-01.wnw"
@@ -57,7 +83,7 @@ public class MongoConector {
         mongoClient = new MongoClient(uri);
     }
 
-    public  void disconect() {
+    public static void disconect() {
         mongoClient.close();
     }
 

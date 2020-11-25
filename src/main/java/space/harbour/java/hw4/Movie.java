@@ -45,6 +45,10 @@ public class Movie implements Jsonable<Movie> {
     public static class BasePerson implements Jsonable<BasePerson> {
         public String name;
 
+        public String getName() {
+            return name;
+        }
+
         public BasePerson(String name) {
             this.name = name;
         }
@@ -74,6 +78,10 @@ public class Movie implements Jsonable<Movie> {
     class Writer extends BasePerson {
         String type;
 
+        public String getType() {
+            return type;
+        }
+
         public Writer(String name) {
             super(name);
         }
@@ -98,6 +106,10 @@ public class Movie implements Jsonable<Movie> {
 
     public static class Actor extends BasePerson {
         public String as;
+
+        public String getAs() {
+            return as;
+        }
 
         public Actor(String name) {
             super(name);
@@ -295,5 +307,61 @@ public class Movie implements Jsonable<Movie> {
         }
 
         return this;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public String getReleased() {
+        return released;
+    }
+
+    public Integer getRuntime() {
+        return runtime;
+    }
+
+    public String getAwards() {
+        return awards;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public BasePerson getDirector() {
+        return director;
+    }
+
+    public ArrayList<String> getGenres() {
+        return genres;
+    }
+
+    public ArrayList<String> getLanguages() {
+        return languages;
+    }
+
+    public ArrayList<String> getCountries() {
+        return countries;
+    }
+
+    public ArrayList<Writer> getWriters() {
+        return writers;
+    }
+
+    public ArrayList<Actor> getActors() {
+        return actors;
+    }
+
+    public ArrayList<Rating> getRatings() {
+        return ratings;
     }
 }
